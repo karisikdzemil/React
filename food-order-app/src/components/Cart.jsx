@@ -54,5 +54,4 @@ export default function Cart() {
     </Modal>
   );
 }
-
-// bio sam bolestan
+// od nocas nastavljam
