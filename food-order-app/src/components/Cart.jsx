@@ -54,4 +54,3 @@ export default function Cart() {
     </Modal>
   );
 }
-// od nocas nastavljam
