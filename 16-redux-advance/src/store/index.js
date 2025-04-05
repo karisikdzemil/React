@@ -1,38 +1,15 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
-const toggleCartSlice = createSlice({
-    name: 'toggleCart',
-    initialState: {open: true},
-    reducers: {
-        toggleCartState (state) {
-            state.open = !state.open;   
-        }
-    }
-});
+import uiSlice from './ui-slice';
+import cartSlice from './cart-slice';
 
-const itemsQuantitySlice = createSlice({
-    name: 'itemsQuantity',
-    initialState: {quantity: 3},
-    reducers: {
-        incrementQuantity (state) {
-            state.quantity = state.quantity + 1
-        },
-        decrementQuantity (state) {
-            state.quantity = state.quantity - 1
-        }
-
-    }
-})
 
 const store = configureStore({
     reducer: {
-        toggle: toggleCartSlice.reducer,
-        quantity: itemsQuantitySlice.reducer
+        ui: uiSlice.reducer,
+        cart: cartSlice.reducer
     }
 });
 
-export const { toggleCartState } = toggleCartSlice.actions;
-export const { incrementQuantity } = itemsQuantitySlice.actions;
-export const { decrementQuantity } = itemsQuantitySlice.actions;
 
 export default store;

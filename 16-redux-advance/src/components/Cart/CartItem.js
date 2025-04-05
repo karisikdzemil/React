@@ -1,12 +1,23 @@
-import { decrementQuantity, incrementQuantity } from '../../store';
 import classes from './CartItem.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../store/cart-slice';
 
 const CartItem = (props) => {
-  const { title, quantity, total, price } = props.item;
-
   const dispatch = useDispatch();
-  const quantityRedux = useSelector(state => state.quantity.quantity);
+
+  const { title, quantity, total, price, id } = props.item;
+
+  const removeItemHandler = () => {
+    dispatch(cartActions.removeItemFromCart(id));
+  }
+
+  const addItemHandler = () => {
+    dispatch(cartActions.addItemToCart({
+      id, 
+      title, 
+      price
+    }))
+  }
 
   return (
     <li className={classes.item}>
@@ -19,11 +30,11 @@ const CartItem = (props) => {
       </header>
       <div className={classes.details}>
         <div className={classes.quantity}>
-          x <span>{quantityRedux}</span>
+          x <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
-          <button onClick={() => dispatch(decrementQuantity())}>-</button>
-          <button onClick={() => dispatch(incrementQuantity())}>+</button>
+          <button onClick={removeItemHandler}>-</button>
+          <button onClick={addItemHandler}>+</button>
         </div>
       </div>
     </li>

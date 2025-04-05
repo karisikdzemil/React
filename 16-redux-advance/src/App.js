@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 
 
 function App() {
-const toggleCart = useSelector(state => state.toggle.open);
+const showCart = useSelector(state => state.ui.cartIsVisible);
 
   return (
     <Layout>
-      {toggleCart && <Cart />}
+      {showCart && <Cart />}
       <Products />
     </Layout>
   );
