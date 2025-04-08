@@ -27,14 +27,16 @@ import NewEvent from './pages/NewEvent';
 import EditEvent from './pages/EditEvent';
 import RootLayout from './pages/Root';
 import EventsRootLayout from './pages/EventsRoot';
+import { loader as eventsLoader } from './pages/EventsPage';
+import ErrorPage from './pages/Error';
 
 function App() {
 
   const router = createBrowserRouter([
-    {path: '/', element: <RootLayout />, children: [
+    {path: '/', element: <RootLayout />, errorElement: <ErrorPage />  , children: [
       { path: '/', element: <HomePage />},
       { path: 'events', element: <EventsRootLayout />, children: [
-        { index: true, element: <EventsPage />},
+        { index: true, element: <EventsPage />, loader: eventsLoader },
         { path: ':eventId', element: <EventDetail />},
         { path: 'new', element: <NewEvent />},
         { path: ':eventId/edit', element: <EditEvent />},
